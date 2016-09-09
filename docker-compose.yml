@@ -1,0 +1,20 @@
+version: '2'
+services:
+  test:
+    build:
+      context: .
+    hostname: app
+    domainname: docker.local
+    working_dir: /var/app
+    command: npm start
+    environment:
+      URI_COUCH: http://database.docker.local
+      NODE_ENV: test
+      LOG_FILE: /var/log/app/test.log
+      LOG_LEVEL: debug
+    ports:
+      - "3000:3000"
+  dockerlint:
+    image: redcoolbeans/dockerlint
+    volumes:
+      - ./Dockerfile:/Dockerfile

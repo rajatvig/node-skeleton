@@ -1,0 +1,10 @@
+sudo: required
+language: node_js
+node_js:
+  - "6"
+
+services:
+  - docker
+
+script:
+- make lint cover build_image tag_image push_image
