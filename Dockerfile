@@ -1,4 +1,4 @@
-FROM mhart/alpine-node:6.5.0
+FROM mhart/alpine-node:6.7.0
 
 MAINTAINER Rajat Vig <rajat.vig@gmail.com>
 

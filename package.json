@@ -1,6 +1,6 @@
 {
   "name": "node-skeleton",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Node Skeleton",
   "scripts": {
     "start": "node src/index.js",
