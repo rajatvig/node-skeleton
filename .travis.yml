@@ -8,3 +8,6 @@ services:
 
 script:
 - make lint cover build_image tag_image push_image
+
+after_script:
+  - bash <(curl -s https://codecov.io/bash)
