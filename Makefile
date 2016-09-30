@@ -40,7 +40,7 @@ test: stop ## Run all Tests
 	$(NPM) test
 
 test_local: stop ## Run all Tests and mount the current working directory
-	$(DC_L) run test npm run cover
+	$(DC_L) run test npm run test
 
 cover: stop ## Generate Coverage Data
 	$(NPM) cover

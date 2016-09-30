@@ -12,6 +12,8 @@ services:
       NODE_ENV: test
       LOG_FILE: /var/log/app/test.log
       LOG_LEVEL: debug
+    volumes:
+      - ./coverage:/var/app/coverage
     ports:
       - "3000:3000"
   dockerlint:
