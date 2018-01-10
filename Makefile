@@ -28,12 +28,9 @@ clean: stop ## Clean all Docker Containers and Volumes
 build: clean ## Rebuild the Docker Image for use by Compose
 	$(DC) build
 
-install: ## Install NPM Packages on the Local FS
-	yarn
-
 lint: ## Lint the Source Code and Dockerfile
 	$(DC) run dockerlint
-	$(DC) $(NPM) lint
+	$(DC) $(YARN) lint
 
 test: stop ## Run all Tests
 	$(DC) $(YARN) test
