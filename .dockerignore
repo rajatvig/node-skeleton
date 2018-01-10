@@ -3,7 +3,7 @@
 .git
 .idea
 .gitignore
-.nvmrc
+.tool-versions
 .editorconfig
 .dockerignore
 .direnv

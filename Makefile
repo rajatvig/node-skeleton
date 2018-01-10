@@ -8,10 +8,9 @@ GIT_TAG=$(QNAME):$(TRAVIS_COMMIT)
 BUILD_TAG=$(QNAME):$(PACKAGE_VERSION).$(TRAVIS_BUILD_NUMBER)
 LATEST_TAG=$(QNAME):latest
 
-DC=docker-compose
-DC_L=docker-compose -f docker-compose.yml -f docker-compose.local.yml
+DC=$(if $(LOCAL),docker-compose -f docker-compose.yml -f docker-compose.local.yml,docker-compose)
 
-NPM=$(DC) run test npm run
+YARN=run test yarn run
 
 .PHONY: help
 .DEFAULT_GOAL := help
@@ -30,26 +29,20 @@ build: clean ## Rebuild the Docker Image for use by Compose
 	$(DC) build
 
 install: ## Install NPM Packages on the Local FS
-	npm install
+	yarn
 
 lint: ## Lint the Source Code and Dockerfile
 	$(DC) run dockerlint
-	$(NPM) lint
+	$(DC) $(NPM) lint
 
 test: stop ## Run all Tests
-	$(NPM) test
-
-test_local: stop ## Run all Tests and mount the current working directory
-	$(DC_L) run test npm run test
+	$(DC) $(YARN) test
 
 cover: stop ## Generate Coverage Data
-	$(NPM) cover
+	$(DC) $(YARN) cover
 
 run: stop ## Run the Application
 	$(DC) up
-
-run_local: stop ## Run the Application and mount the current working directory
-	$(DC_L) up
 
 build_image: ## Build the Docker Image
 	docker build -t $(GIT_TAG) .
